@@ -172,9 +172,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
-	var _Zoomer = __webpack_require__(3);
+	var _zoomer = __webpack_require__(3);
 
-	var _Zoomer2 = _interopRequireDefault(_Zoomer);
+	var _zoomer2 = _interopRequireDefault(_zoomer);
 
 	var _constants = __webpack_require__(4);
 
@@ -268,11 +268,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      this.moveContinue = false;
 
-	      this.zoomer = new _Zoomer2['default']();
-
-	      if (this.options.allowDragNDrop) {
-	        _jquery2['default'].event.props.push('dataTransfer');
-	      }
+	      this.zoomer = new _zoomer2['default']();
 
 	      this.bindListeners();
 
@@ -335,7 +331,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    key: 'onDragOver',
 	    value: function onDragOver(e) {
 	      e.preventDefault();
-	      e.dataTransfer.dropEffect = 'copy';
+	      e.originalEvent.dataTransfer.dropEffect = 'copy';
 	      this.$preview.toggleClass(_constants.CLASS_NAMES.DRAG_HOVERED, e.type === 'dragover');
 	    }
 	  }, {
@@ -346,7 +342,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      e.preventDefault();
 	      e.stopPropagation();
 
-	      var files = Array.prototype.slice.call(e.dataTransfer.files, 0);
+	      var files = Array.prototype.slice.call(e.originalEvent.dataTransfer.files, 0);
 	      files.some(function (file) {
 	        if (!file.type.match('image')) {
 	          return false;
